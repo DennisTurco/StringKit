@@ -1,2 +1,4 @@
 <Solution>
+    <Project Path="StringKit.Tests/StringKit.Tests.csproj" />
+    <Project Path="StringKit/StringKit.csproj" />
 </Solution>
