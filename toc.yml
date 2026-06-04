@@ -1,0 +1,12 @@
+- name: Docs
+  href: docs/
+- name: API
+  href: api/
+- name: Coverage
+  href: coverage-report.md
+- name: "GitHub"
+  href: https://github.com/DennisTurco/StringKit
+- name: "NuGet"
+  href: https://www.nuget.org/packages/StringKit
+- name: "❤️ Sponsor"
+  href: https://github.com/sponsors/DennisTurco
