@@ -22,7 +22,7 @@ landingData:
 
 # StringKit
 
-A lightweight .NET library for Italian fiscal compliance: validate, parse and generate **Fiscal Code**, validate **Partita IVA** and **IBAN**, and query a built-in database of Italian municipalities and foreign countries (Belfiore codes). Everything runs locally, no HTTP calls, no data leaves your app.
+A lightweight .NET library for ...
 
 [![NuGet](https://img.shields.io/nuget/v/StringKit.svg)](https://www.nuget.org/packages/StringKit)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/StringKit.svg)](https://www.nuget.org/packages/StringKit)
@@ -41,24 +41,12 @@ dotnet add package StringKit
 ```csharp
 using StringKit;
 
-// Validate
-bool valid = FiscalCodeValidator.IsValid("RSSMRA85T10A562S"); // true
-
-// Parse
-FiscalCodeData data = FiscalCodeParser.Parse("RSSMRA85T10A562S");
-Console.WriteLine(data.Gender);       // Male
-Console.WriteLine(data.DateOfBirth);  // 10/12/1985
-Console.WriteLine(data.BelfioreCode); // A562
+...
 ```
 
 ## 2. Features
 
-- ✅ Fiscal Code **validation** (format, date, Belfiore code, check digit)
-- ✅ Fiscal Code **parsing** (extract gender, date of birth, municipality)
-- ✅ **Foreign-born** support (Z-codes for 261 countries including historical ones)
-- ✅ IBAN **validation**
-- ✅ Partita IVA **validation**
-- ✅ Zero external dependencies at runtime
-- ✅ .NET 9 / NativeAOT friendly
+- ...
+- ...
 
 ## 3. [📖 Read the documentation →](docs/introduction.md)
