@@ -2,6 +2,8 @@
   href: introduction.md
 - name: Getting Started
   href: getting-started.md
+- name: API Reference
+  href: api-reference.md
 - name: Changelog
   href: ../CHANGELOG.md
 - name: Contributing

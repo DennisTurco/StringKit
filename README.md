@@ -6,7 +6,7 @@
 
 **FULL DOCUMENTATION**: [https://dennisturco.github.io/StringKit/](https://dennisturco.github.io/StringKit/)
 
-A lightweight .NET library for ...
+A lightweight .NET library of extension methods for common string transformations and formatting.
 
 ![Build](https://github.com/DennisTurco/StringKit/actions/workflows/build.yml/badge.svg)
 ![Coverage](https://codecov.io/gh/DennisTurco/StringKit/graph/badge.svg)
@@ -22,19 +22,32 @@ dotnet add package StringKit
 
 ## Features
 
-- ...
-- ...
+- **Case conversion** — `ToSlug`, `ToSnakeCase`, `ToCamelCase`, `ToPascalCase`, `ToTitleCase`, `ToSentenceCase`
+- **Truncation** — `Truncate` (by characters) and `TruncateWords` (by word count)
+- **Utilities** — `Repeat`, `Reverse`
+- Zero external dependencies — pure .NET BCL
+- All methods are static and thread-safe
 
 ## Usage
 
+```csharp
+using StringKit;
+
+"hello world".ToSlug()                              // "hello-world"
+"hello world".ToCamelCase()                         // "helloWorld"
+"hello world".ToPascalCase()                        // "HelloWorld"
+"hello world".ToSnakeCase()                         // "hello_world"
+"hello world".ToTitleCase(new CultureInfo("en-US")) // "Hello World"
+"Hello World".Truncate(6)                           // "Hello..."
+"ab".Repeat(3)                                      // "ababab"
+"hello".Reverse()                                   // "olleh"
+```
+
 ## Contributing
 
-Contributions are welcome. If you find a fiscal code that validates incorrectly,
-please open an issue with:
+Contributions are welcome! Please open an issue or pull request on GitHub.
 
-1. The fiscal code (you can anonymise it — just keep the structure)
-2. The personal data it should/should not match
-3. The expected result
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 

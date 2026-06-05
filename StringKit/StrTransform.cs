@@ -105,8 +105,8 @@ public static class StrTransform
     /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="length"/> is less than or equal to zero.</exception>
     /// <example>
     /// <code>
-    /// "Hello World".Truncate(5)       // "Hello..."
-    /// "Hello World".Truncate(5, "…")  // "Hello…"
+    /// "Hello World".Truncate(6)       // "Hello..."
+    /// "Hello World".Truncate(6, "…")  // "Hello…"
     /// "Hi".Truncate(10)               // "Hi"
     /// </code>
     /// </example>
