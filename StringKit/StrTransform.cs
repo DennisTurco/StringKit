@@ -112,13 +112,18 @@ public static class StrTransform
     /// </example>
     public static string Truncate(this string value, int length, string suffix = "...")
     {
+        int end = value.Length - length;
+
         if (length <= 0)
             throw new ArgumentOutOfRangeException(nameof(length), "Length must be greater than 0.");
 
-        if (string.IsNullOrEmpty(value) || value.Length <= length)
+        if (end < 0)
+            throw new ArgumentOutOfRangeException(nameof(length), "Length cannot be greater than the string length");
+
+        if (string.IsNullOrEmpty(value))
             return value;
 
-        return value.Substring(0, length) + suffix;
+        return value.Substring(0, end) + suffix;
     }
 
     /// <summary>

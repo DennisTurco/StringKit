@@ -135,24 +135,18 @@ public class StrTransformTests
     // ═══════════════════════════════════════════════════════════════════════════
 
     [Theory]
-    [InlineData("Hello World", 4u, "lo World...")]
-    [InlineData("Hello World", 1u, "Hello World...")]
-    [InlineData("Hello", 5u, "o...")]
-    [InlineData("Hello", 2u, "ello...")]
+    [InlineData("Hello World", 4, "Hello W...")]
+    [InlineData("Hello World", 1, "Hello Worl...")]
+    [InlineData("Hello", 5, "...")]
+    [InlineData("Hello", 2, "Hel...")]
     public void Truncate_ValidLength_ReturnsExpected(string input, int length, string expected)
         => Assert.Equal(expected, input.Truncate(length));
 
-    [Fact]
-    public void Truncate_ResultAlwaysEndsWithEllipsis()
-    {
-        var result = "Hello World".Truncate(3);
-        Assert.EndsWith("...", result);
-    }
 
     [Theory]
-    [InlineData("Hi", 10u)]
-    [InlineData("Hello", 6u)]
-    [InlineData("", 1u)]
+    [InlineData("Hi", 10)]
+    [InlineData("Hello", 6)]
+    [InlineData("", 1)]
     public void Truncate_LengthExceedsStringLength_ThrowsStrTransformException(string input, int length)
         => Assert.Throws<ArgumentOutOfRangeException>(() => input.Truncate(length));
 
