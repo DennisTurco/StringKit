@@ -11,10 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Documentation
 
-- `docs/introduction.md` — overview of StringKit: purpose, design goals (zero dependencies, thread-safe, no I/O), supported platform, and license
-- `docs/getting-started.md` — complete getting-started guide: installation (CLI, NuGet, Visual Studio), namespace setup, and quick usage examples for all method groups
-- `docs/api-reference.md` — full API reference for all 10 public methods (`ToSlug`, `ToSnakeCase`, `ToCamelCase`, `ToPascalCase`, `ToTitleCase`, `ToSentenceCase`, `Truncate`, `TruncateWords`, `Repeat`, `Reverse`) with signatures, parameter tables, return values, exceptions, and examples
-- `docs/toc.yml` — added *API Reference* entry to the documentation sidebar
+- Full [DocFX](https://dotnet.github.io/docfx/) documentation site published to GitHub Pages
+- API reference generated from XML doc comments (zero CS1591 warnings)
 
 #### Project
 
@@ -24,16 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `images/icon.svg` — updated to match the new icon design (keeps `height="32"` for inline use)
 - `images/icon.png` — regenerated (64×64) to match the new icon design
 - `.github/FUNDING.yml` — fixed GitHub Sponsors button format (`github: ["DennisTurco"]` → `github: DennisTurco`); the sponsor button now renders correctly on the repository page
-
-## [1.0.0] - 
-
-### Added
-
-#### Documentation
-
-- Full [DocFX](https://dotnet.github.io/docfx/) documentation site published to GitHub Pages
-- API reference generated from XML doc comments (zero CS1591 warnings)
-- Conceptual docs: introduction, getting started
 
 ### Notes
 

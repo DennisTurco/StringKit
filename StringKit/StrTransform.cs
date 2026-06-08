@@ -148,7 +148,7 @@ public static class StrTransform
         if (words.Length < n || (string.IsNullOrEmpty(value) && n > 0)) throw new ArgumentOutOfRangeException($"Cannot truncate {n} words because it's exceeded the number of words of the string");
         if (words.Length == n) return string.Empty;
 
-        return words[0..n].ToString() ?? "";
+        return string.Join(words[0..n].ToString(), " ");
     }
 
     /// <summary>
@@ -163,12 +163,7 @@ public static class StrTransform
     /// </code>
     /// </example>
     public static string Repeat(this string value, int n)
-    {
-        string newStr = "";
-        for (int i = 0; i < n; i++)
-            newStr += value;
-        return newStr;
-    }
+        => string.Concat(Enumerable.Repeat(value, n));
 
     /// <summary>
     /// Reverses a string character by character.
