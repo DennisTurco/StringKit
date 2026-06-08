@@ -18,9 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `README.md` — filled in the library description, feature list, and usage examples; fixed the Contributing section (previously contained placeholder copy from another project)
 - `assets/icon.svg` — replaced the placeholder "CF" icon (repurposed from another project) with a proper StringKit icon: dark purple/indigo gradient, `"SK"` monogram, decorative curly quotation marks, and a violet accent bar
-- `assets/icon.png` — regenerated (512×512) to match the new icon design
-- `images/icon.svg` — updated to match the new icon design (keeps `height="32"` for inline use)
-- `images/icon.png` — regenerated (64×64) to match the new icon design
 - `.github/FUNDING.yml` — fixed GitHub Sponsors button format (`github: ["DennisTurco"]` → `github: DennisTurco`); the sponsor button now renders correctly on the repository page
 
 ### Notes
