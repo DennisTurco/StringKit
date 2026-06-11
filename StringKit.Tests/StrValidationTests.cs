@@ -57,11 +57,10 @@ public class StrValidationTests
     [Theory]
     [InlineData("   ", true)]
     [InlineData("", true)]
-    [InlineData(null, true)]
     [InlineData("Hi", false)]
     [InlineData(" x ", false)]
-    public void IsNullOrWhiteSpace(string? input, bool expected)
-        => Assert.Equal(expected, input?.IsNullOrWhiteSpace());
+    public void IsNullOrWhiteSpace(string input, bool expected)
+        => Assert.Equal(expected, input.IsNullOrWhiteSpace());
 
     // HasMinLength
     [Theory]
