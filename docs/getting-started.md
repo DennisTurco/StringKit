@@ -58,6 +58,46 @@ using StringKit;
 "hello".Reverse(); // "olleh"
 ```
 
+### Privacy & PII Masking
+
+```csharp
+"mario@mail.it".MaskEmail();   // "m****@mail.it"
+"3331234567".MaskPhone();       // "333*****67"
+"Hello World".Redact(1, 5);    // "H**** World"
+```
+
+### Search & Comparison
+
+```csharp
+"Hello World".ContainsAny("World", "Foo");   // true
+"Hello World".ContainsAll("Hello", "World"); // true
+"Hello World".StartsWithAny("Hello", "Hi");  // true
+"Hello World".EndsWithAny("World", "Earth"); // true
+"Hello".EqualsIgnoreCase("hello");           // true
+```
+
+### Validation
+
+```csharp
+"mario@mail.it".IsEmail();    // true
+"https://example.com".IsUrl(); // true
+"12345".IsNumeric();          // true
+"Hello".IsAlpha();            // true
+"Hello123".IsAlphanumeric();  // true
+"   ".IsNullOrWhiteSpace();   // true
+"Hello".HasMinLength(3);      // true
+"Hi".HasMaxLength(5);         // true
+```
+
+### Encoding & Decoding
+
+```csharp
+"Hello".ToBase64();             // "SGVsbG8="
+"SGVsbG8=".FromBase64();        // "Hello"
+"hello world".UrlEncode();      // "hello+world"
+"hello+world".HtmlDecode();     // "hello world"
+```
+
 ## 4. Next Steps
 
 - Read the full [API Reference](api-reference.md) for all methods, signatures, and edge-case behaviour.

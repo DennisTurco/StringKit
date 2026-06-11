@@ -4,8 +4,17 @@ title: API Reference
 
 # API Reference
 
-All methods live in the `StringKit` namespace and are extension methods on `System.String`.  
-They are defined in the static class `StrTransform`.
+All methods live in the `StringKit` namespace and are extension methods on `System.String`.
+
+The library is organised into the following static classes:
+
+| Class | Purpose |
+|-------|---------|
+| `StrTransform` | Case conversion, truncation, and other text transformations |
+| `StrPrivacy` | Masking and redacting sensitive data (PII) |
+| `StrResearch` | Searching and comparing strings |
+| `StrValidation` | Validating string formats |
+| `StrEncodeDecode` | Encoding and decoding strings (Base64, URL, HTML) |
 
 ---
 
@@ -276,4 +285,374 @@ public static string Reverse(this string value)
 "hello world".Reverse()  // "dlrow olleh"
 "racecar".Reverse()      // "racecar"
 "".Reverse()             // ""
+```
+
+---
+
+## Privacy (`StrPrivacy`)
+
+### `Redact`
+
+Replaces characters in a string with asterisks between the specified indices.
+
+```csharp
+public static string Redact(this string value, int start, int end)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The string to redact. |
+| `start` | `int` | Index of the first character to redact (inclusive). |
+| `end` | `int` | Index of the last character to redact (exclusive). |
+
+**Returns** `string` — the string with the specified range replaced by `*`.
+
+**Throws**
+- `ArgumentOutOfRangeException` — if `end` ≥ `value.Length`, or if `start` > `end`.
+
+**Examples**
+
+```csharp
+"Hello World".Redact(1, 5)  // "H**** World"
+```
+
+---
+
+### `MaskEmail`
+
+Masks an email address, hiding all characters between the first character and the `@` symbol.
+
+```csharp
+public static string MaskEmail(this string email)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `email` | `string` | The email address to mask. |
+
+**Returns** `string` — the masked email address.
+
+**Examples**
+
+```csharp
+"mario@mail.it".MaskEmail()  // "m****@mail.it"
+```
+
+---
+
+### `MaskPhone`
+
+Masks a phone number, hiding characters from index 3 to 8.
+
+```csharp
+public static string MaskPhone(this string phone)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `phone` | `string` | The phone number to mask. |
+
+**Returns** `string` — the masked phone number.
+
+**Examples**
+
+```csharp
+"3331234567".MaskPhone()  // "333*****67"
+```
+
+---
+
+## Search & Comparison (`StrResearch`)
+
+### `ContainsAny`
+
+Returns `true` if the string contains at least one of the specified substrings.
+
+```csharp
+public static bool ContainsAny(this string value, params string[] strings)
+```
+
+**Examples**
+
+```csharp
+"Hello World".ContainsAny("World", "Foo")  // true
+"Hello World".ContainsAny("Foo", "Bar")    // false
+```
+
+---
+
+### `ContainsAll`
+
+Returns `true` if the string contains all of the specified substrings.
+
+```csharp
+public static bool ContainsAll(this string value, params string[] strings)
+```
+
+**Examples**
+
+```csharp
+"Hello World".ContainsAll("Hello", "World")  // true
+"Hello World".ContainsAll("Hello", "Foo")    // false
+```
+
+---
+
+### `StartsWithAny`
+
+Returns `true` if the string starts with at least one of the specified prefixes.
+
+```csharp
+public static bool StartsWithAny(this string value, params string[] strings)
+```
+
+**Examples**
+
+```csharp
+"Hello World".StartsWithAny("Hello", "Foo")  // true
+"Hello World".StartsWithAny("Foo", "Bar")    // false
+```
+
+---
+
+### `EndsWithAny`
+
+Returns `true` if the string ends with at least one of the specified suffixes.
+
+```csharp
+public static bool EndsWithAny(this string value, params string[] strings)
+```
+
+**Examples**
+
+```csharp
+"Hello World".EndsWithAny("World", "Foo")  // true
+"Hello World".EndsWithAny("Foo", "Bar")    // false
+```
+
+---
+
+### `EqualsIgnoreCase`
+
+Returns `true` if two strings are equal, ignoring case.
+
+```csharp
+public static bool EqualsIgnoreCase(this string value, string other)
+```
+
+**Examples**
+
+```csharp
+"Hello".EqualsIgnoreCase("hello")  // true
+"Hello".EqualsIgnoreCase("World")  // false
+```
+
+---
+
+## Validation (`StrValidation`)
+
+### `IsEmail`
+
+Determines whether a string is a valid email address.
+
+```csharp
+public static bool IsEmail(this string email)
+```
+
+**Examples**
+
+```csharp
+"mario@mail.it".IsEmail()  // true
+"not-an-email".IsEmail()   // false
+```
+
+---
+
+### `IsUrl`
+
+Determines whether a string is a valid absolute HTTP/HTTPS URL.
+
+```csharp
+public static bool IsUrl(this string url)
+```
+
+**Examples**
+
+```csharp
+"https://example.com".IsUrl()  // true
+"not a url".IsUrl()            // false
+```
+
+---
+
+### `IsNumeric`
+
+Returns `true` if the string contains only digit characters.
+
+```csharp
+public static bool IsNumeric(this string number)
+```
+
+**Examples**
+
+```csharp
+"12345".IsNumeric()   // true
+"123a5".IsNumeric()   // false
+```
+
+---
+
+### `IsAlpha`
+
+Returns `true` if the string contains only alphabetic characters.
+
+```csharp
+public static bool IsAlpha(this string letters)
+```
+
+**Examples**
+
+```csharp
+"Hello".IsAlpha()   // true
+"Hello1".IsAlpha()  // false
+```
+
+---
+
+### `IsAlphanumeric`
+
+Returns `true` if the string contains only letters and digits.
+
+```csharp
+public static bool IsAlphanumeric(this string characters)
+```
+
+**Examples**
+
+```csharp
+"Hello123".IsAlphanumeric()   // true
+"Hello 123".IsAlphanumeric()  // false
+```
+
+---
+
+### `IsNullOrWhiteSpace`
+
+Returns `true` if the string is `null`, empty, or consists only of whitespace.
+
+```csharp
+public static bool IsNullOrWhiteSpace(this string value)
+```
+
+**Examples**
+
+```csharp
+"   ".IsNullOrWhiteSpace()  // true
+"Hi".IsNullOrWhiteSpace()   // false
+```
+
+---
+
+### `HasMinLength`
+
+Returns `true` if the string length is ≥ the specified minimum.
+
+```csharp
+public static bool HasMinLength(this string value, int length)
+```
+
+**Throws** `ArgumentOutOfRangeException` — if `length` ≤ 0.
+
+**Examples**
+
+```csharp
+"Hello".HasMinLength(3)  // true
+"Hi".HasMinLength(5)     // false
+```
+
+---
+
+### `HasMaxLength`
+
+Returns `true` if the string length is ≤ the specified maximum.
+
+```csharp
+public static bool HasMaxLength(this string value, int length)
+```
+
+**Throws** `ArgumentOutOfRangeException` — if `length` ≤ 0.
+
+**Examples**
+
+```csharp
+"Hi".HasMaxLength(5)           // true
+"Hello World".HasMaxLength(5)  // false
+```
+
+---
+
+## Encoding & Decoding (`StrEncodeDecode`)
+
+### `ToBase64`
+
+Encodes a plain-text string to its Base64 representation using UTF-8 encoding.
+
+```csharp
+public static string ToBase64(this string value)
+```
+
+**Examples**
+
+```csharp
+"Hello".ToBase64()  // "SGVsbG8="
+```
+
+---
+
+### `FromBase64`
+
+Decodes a Base64-encoded string back to its original UTF-8 plain-text.
+
+```csharp
+public static string FromBase64(this string value)
+```
+
+**Examples**
+
+```csharp
+"SGVsbG8=".FromBase64()  // "Hello"
+```
+
+---
+
+### `UrlEncode`
+
+Encodes a string for safe inclusion in a URL, replacing special characters with their percent-encoded equivalents.
+
+```csharp
+public static string UrlEncode(this string link)
+```
+
+**Examples**
+
+```csharp
+"hello world".UrlEncode()  // "hello+world"
+"a=1&b=2".UrlEncode()      // "a%3d1%26b%3d2"
+```
+
+---
+
+### `HtmlDecode`
+
+Decodes a URL-encoded string, converting percent-encoded sequences back to their original characters.
+
+```csharp
+public static string HtmlDecode(this string value)
+```
+
+**Examples**
+
+```csharp
+"hello+world".HtmlDecode()   // "hello world"
+"a%3d1%26b%3d2".HtmlDecode() // "a=1&b=2"
 ```

@@ -11,15 +11,34 @@ title: Introduction
 StringKit extends the built-in `System.String` type with fluent extension methods — so you can perform everyday string manipulation without writing boilerplate code.
 
 ```csharp
+// Case conversion & text transforms (StrTransform)
 "hello world".ToSlug()                              // "hello-world"
 "hello world".ToCamelCase()                         // "helloWorld"
 "hello world".ToPascalCase()                        // "HelloWorld"
 "hello world".ToSnakeCase()                         // "hello_world"
 "hello world".ToTitleCase(new CultureInfo("en-US")) // "Hello World"
 "hello world. bye world".ToSentenceCase()           // "Hello world. Bye world"
-"Hello World".Truncate(5)                           // "Hello..."
+"Hello World".Truncate(5)                           // "Hello W..."
 "ab".Repeat(3)                                      // "ababab"
 "hello".Reverse()                                   // "olleh"
+
+// Privacy / PII masking (StrPrivacy)
+"mario@mail.it".MaskEmail()   // "m****@mail.it"
+"3331234567".MaskPhone()       // "333*****67"
+
+// Search & comparison (StrResearch)
+"Hello World".ContainsAny("World", "Foo")  // true
+"Hello".EqualsIgnoreCase("hello")          // true
+
+// Validation (StrValidation)
+"mario@mail.it".IsEmail()     // true
+"12345".IsNumeric()           // true
+"Hello".HasMinLength(3)       // true
+
+// Encoding / decoding (StrEncodeDecode)
+"Hello".ToBase64()            // "SGVsbG8="
+"SGVsbG8=".FromBase64()       // "Hello"
+"hello world".UrlEncode()     // "hello+world"
 ```
 
 ## Design Goals
