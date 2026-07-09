@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ToBase64(string)` — encodes a plain-text string to its Base64 representation using UTF-8 encoding
 - `FromBase64(string)` — decodes a Base64-encoded string back to its original UTF-8 plain-text
 - `UrlEncode(string)` — encodes a string for safe inclusion in a URL (percent-encodes special characters)
-- `HtmlDecode(string)` — decodes a URL-encoded string back to its original characters
+- `UrlDecode(string)` — decodes a URL-encoded string back to its original characters
 
 #### `StrResearch` — new class
 

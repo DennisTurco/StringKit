@@ -82,19 +82,67 @@ public class StrEncodeDecodeTests
     }
 
     [Fact]
-    public void HtmlDecode_UrlEncodedString_ReturnsDecoded()
+    public void UrlDecode_UrlEncodedString_ReturnsDecoded()
     {
         var input = "hello+world";
-        var result = input.HtmlDecode();
+        var result = input.UrlDecode();
         Assert.Equal("hello world", result);
     }
 
     [Fact]
-    public void HtmlDecode_PercentEncodedString_ReturnsDecoded()
+    public void UrlDecode_PercentEncodedString_ReturnsDecoded()
     {
         var input = "foo%3dbar%26baz%3dqux";
-        var result = input.HtmlDecode();
+        var result = input.UrlDecode();
         Assert.Equal("foo=bar&baz=qux", result);
+    }
+
+    [Fact]
+    public void UrlDecode_EmptyString_ReturnsEmptyString()
+    {
+        var input = string.Empty;
+        var result = input.UrlDecode();
+        Assert.Equal(string.Empty, result);
+    }
+
+    [Fact]
+    public void UrlEncode_ThenUrlDecode_RoundTrip_ReturnsOriginal()
+    {
+        var original = "test string with spaces & special=chars!";
+        var result = original.UrlEncode().UrlDecode();
+        Assert.Equal(original, result);
+    }
+
+    [Fact]
+    public void HtmlEncode_StringWithTags_ReturnsEncoded()
+    {
+        var input = "<b>Hello</b>";
+        var result = input.HtmlEncode();
+        Assert.Equal("&lt;b&gt;Hello&lt;/b&gt;", result);
+    }
+
+    [Fact]
+    public void HtmlEncode_StringWithAmpersand_ReturnsEncoded()
+    {
+        var input = "foo & bar";
+        var result = input.HtmlEncode();
+        Assert.Equal("foo &amp; bar", result);
+    }
+
+    [Fact]
+    public void HtmlEncode_EmptyString_ReturnsEmptyString()
+    {
+        var input = string.Empty;
+        var result = input.HtmlEncode();
+        Assert.Equal(string.Empty, result);
+    }
+
+    [Fact]
+    public void HtmlDecode_HtmlEncodedString_ReturnsDecoded()
+    {
+        var input = "&lt;b&gt;Hello&lt;/b&gt;";
+        var result = input.HtmlDecode();
+        Assert.Equal("<b>Hello</b>", result);
     }
 
     [Fact]
@@ -106,10 +154,10 @@ public class StrEncodeDecodeTests
     }
 
     [Fact]
-    public void UrlEncode_ThenHtmlDecode_RoundTrip_ReturnsOriginal()
+    public void HtmlEncode_ThenHtmlDecode_RoundTrip_ReturnsOriginal()
     {
-        var original = "test string with spaces & special=chars!";
-        var result = original.UrlEncode().HtmlDecode();
+        var original = "<div class=\"test\">Tom & Jerry's \"show\"</div>";
+        var result = original.HtmlEncode().HtmlDecode();
         Assert.Equal(original, result);
     }
 }

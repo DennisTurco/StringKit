@@ -95,7 +95,7 @@ using StringKit;
 "Hello".ToBase64();             // "SGVsbG8="
 "SGVsbG8=".FromBase64();        // "Hello"
 "hello world".UrlEncode();      // "hello+world"
-"hello+world".HtmlDecode();     // "hello world"
+"hello+world".UrlDecode();     // "hello world"
 ```
 
 ## 4. Next Steps

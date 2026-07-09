@@ -643,19 +643,63 @@ public static string UrlEncode(this string link)
 
 ---
 
-### `HtmlDecode`
+### `UrlDecode`
 
 Decodes a URL-encoded string, converting percent-encoded sequences back to their original characters.
 
 ```csharp
-public static string HtmlDecode(this string value)
+public static string UrlDecode(this string value)
 ```
 
 **Examples**
 
 ```csharp
-"hello+world".HtmlDecode()   // "hello world"
-"a%3d1%26b%3d2".HtmlDecode() // "a=1&b=2"
+"hello+world".UrlDecode()   // "hello world"
+"a%3d1%26b%3d2".UrlDecode() // "a=1&b=2"
+```
+
+---
+
+### `HtmlEncode`
+
+Encodes a string for safe inclusion in HTML, replacing characters such as `<`, `>`, and `&` with their HTML entity equivalents.
+
+```csharp
+public static string HtmlEncode(this string value)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The string to HTML-encode. |
+
+**Returns** `string` — the HTML-encoded string.
+
+**Examples**
+
+```csharp
+"<b>Hello</b> & 'World'".HtmlEncode()  // "&lt;b&gt;Hello&lt;/b&gt; &amp; &#39;World&#39;"
+```
+
+---
+
+### `HtmlDecode`
+
+Decodes an HTML-encoded string, converting HTML entities back to their original characters.
+
+```csharp
+public static string HtmlDecode(this string value)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The HTML-encoded string to decode. |
+
+**Returns** `string` — the decoded string.
+
+**Examples**
+
+```csharp
+"&lt;b&gt;Hello&lt;/b&gt;".HtmlDecode()  // "<b>Hello</b>"
 ```
 
 ---

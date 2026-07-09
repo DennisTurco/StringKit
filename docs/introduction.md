@@ -39,6 +39,7 @@ StringKit extends the built-in `System.String` type with fluent extension method
 "Hello".ToBase64()            // "SGVsbG8="
 "SGVsbG8=".FromBase64()       // "Hello"
 "hello world".UrlEncode()     // "hello+world"
+"<b>Hi</b>".HtmlEncode()      // "&lt;b&gt;Hi&lt;/b&gt;"
 
 // Normalization (StrNormalize)
 "  ciao    mondo  ".NormalizeSpaces()             // "ciao mondo"

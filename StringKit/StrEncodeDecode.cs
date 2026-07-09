@@ -45,6 +45,23 @@ public static class StrEncodeDecode
     /// </summary>
     /// <param name="value">The URL-encoded string to decode.</param>
     /// <returns>The decoded string.</returns>
-    public static string HtmlDecode(this string value)
+    public static string UrlDecode(this string value)
         => HttpUtility.UrlDecode(value);
+
+    /// <summary>
+    /// Encodes a string for safe inclusion in HTML, replacing characters such as
+    /// <c>&lt;</c>, <c>&gt;</c>, and <c>&amp;</c> with their HTML entity equivalents.
+    /// </summary>
+    /// <param name="value">The string to HTML-encode.</param>
+    /// <returns>An HTML-encoded string.</returns>
+    public static string HtmlEncode(this string value)
+        => HttpUtility.HtmlEncode(value);
+
+    /// <summary>
+    /// Decodes an HTML-encoded string, converting HTML entities back to their original characters.
+    /// </summary>
+    /// <param name="value">The HTML-encoded string to decode.</param>
+    /// <returns>The decoded string.</returns>
+    public static string HtmlDecode(this string value)
+        => HttpUtility.HtmlDecode(value);
 }

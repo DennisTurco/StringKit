@@ -49,6 +49,6 @@ using StringKit;
 - **Privacy / PII masking** — `Redact`, `MaskEmail`, `MaskPhone`
 - **Search & comparison** — `ContainsAny`, `ContainsAll`, `StartsWithAny`, `EndsWithAny`, `EqualsIgnoreCase`
 - **Validation** — `IsEmail`, `IsUrl`, `IsNumeric`, `IsAlpha`, `IsAlphanumeric`, `IsNullOrWhiteSpace`, `HasMinLength`, `HasMaxLength`
-- **Encoding / decoding** — `ToBase64`, `FromBase64`, `UrlEncode`, `HtmlDecode`
+- **Encoding / decoding** — `ToBase64`, `FromBase64`, `UrlEncode`, `UrlDecode`, `HtmlEncode`, `HtmlDecode`
 
 ## 3. [📖 Read the documentation →](docs/introduction.md)
