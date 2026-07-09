@@ -12,7 +12,7 @@ landingData:
         url: docs/introduction.md
       - name: Coverage
         icon: fa-circle-check
-        description: 167 tests covering validation, parsing, generation, IBAN, VAT and municipalities.
+        description: 191 tests covering case conversion, normalization, privacy, search, validation, and encoding.
         url: coverage-report.md
       - name: Open Source
         icon: fa-code-branch
@@ -22,7 +22,7 @@ landingData:
 
 # StringKit
 
-A lightweight .NET library for ...
+A lightweight .NET library of extension methods for common string transformations and formatting.
 
 [![NuGet](https://img.shields.io/nuget/v/StringKit.svg)](https://www.nuget.org/packages/StringKit)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/StringKit.svg)](https://www.nuget.org/packages/StringKit)
@@ -40,13 +40,15 @@ dotnet add package StringKit
 
 ```csharp
 using StringKit;
-
-...
 ```
 
 ## 2. Features
 
-- ...
-- ...
+- **Case conversion & truncation** — `ToSlug`, `ToCamelCase`, `ToPascalCase`, `ToSnakeCase`, `ToTitleCase`, `ToSentenceCase`, `Truncate`, `Repeat`, `Reverse`
+- **Normalization** — `NormalizeSpaces`, `RemoveDiacritics`, `RemoveSpecialChars`, `NormalizeNewLines`, `StripHtml`, `CollapseWhitespace`, `JoinLines`
+- **Privacy / PII masking** — `Redact`, `MaskEmail`, `MaskPhone`
+- **Search & comparison** — `ContainsAny`, `ContainsAll`, `StartsWithAny`, `EndsWithAny`, `EqualsIgnoreCase`
+- **Validation** — `IsEmail`, `IsUrl`, `IsNumeric`, `IsAlpha`, `IsAlphanumeric`, `IsNullOrWhiteSpace`, `HasMinLength`, `HasMaxLength`
+- **Encoding / decoding** — `ToBase64`, `FromBase64`, `UrlEncode`, `HtmlDecode`
 
 ## 3. [📖 Read the documentation →](docs/introduction.md)

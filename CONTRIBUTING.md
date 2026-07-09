@@ -38,6 +38,8 @@ To preview the documentation locally:
 docfx .\docfx.json --serve
 ```
 
+Note: run `dotnet tool install -g docfx` if you get error on docfx command
+
 ## 4. Pull Requests
 
 Please keep pull requests focused on a single change whenever possible.

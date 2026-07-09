@@ -15,6 +15,7 @@ The library is organised into the following static classes:
 | `StrResearch` | Searching and comparing strings |
 | `StrValidation` | Validating string formats |
 | `StrEncodeDecode` | Encoding and decoding strings (Base64, URL, HTML) |
+| `StrNormalize` | Cleaning and normalizing string content (whitespace, diacritics, HTML, line endings) |
 
 ---
 
@@ -655,4 +656,166 @@ public static string HtmlDecode(this string value)
 ```csharp
 "hello+world".HtmlDecode()   // "hello world"
 "a%3d1%26b%3d2".HtmlDecode() // "a=1&b=2"
+```
+
+---
+
+## Normalization (`StrNormalize`)
+
+### `NormalizeSpaces`
+
+Trims the string and collapses any run of multiple consecutive spaces into a single space.
+
+```csharp
+public static string NormalizeSpaces(this string value)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The string to normalize. |
+
+**Returns** `string` — the trimmed string with internal whitespace runs collapsed to single spaces.
+
+**Examples**
+
+```csharp
+"  ciao    mondo  ".NormalizeSpaces()  // "ciao mondo"
+"a     b     c".NormalizeSpaces()     // "a b c"
+```
+
+---
+
+### `RemoveDiacritics`
+
+Removes diacritical marks (accents) from the characters in the string.
+
+```csharp
+public static string RemoveDiacritics(this string value)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The string to strip diacritics from. |
+
+**Returns** `string` — the string with non-spacing combining marks removed, re-normalized to composed form.
+
+**Examples**
+
+```csharp
+"àèìòù".RemoveDiacritics()   // "aeiou"
+"café".RemoveDiacritics()   // "cafe"
+```
+
+---
+
+### `JoinLines`
+
+Joins all lines in the string into one by removing newline characters.
+
+```csharp
+public static string JoinLines(this string value)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The multi-line string to join. |
+
+**Returns** `string` — the string with all newline characters removed.
+
+**Examples**
+
+```csharp
+"line1\nline2\nline3".JoinLines()  // "line1line2line3"
+```
+
+---
+
+### `RemoveSpecialChars`
+
+Removes non-alphanumeric characters (`a-z`, `A-Z`, `0-9` are kept) from the string, optionally replacing each removed character with a given replacement string.
+
+```csharp
+public static string RemoveSpecialChars(this string value, string replace = "")
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The string to clean. |
+| `replace` | `string` | The string to substitute for each special character removed. Defaults to an empty string. |
+
+**Returns** `string` — the string with special characters removed or replaced.
+
+**Examples**
+
+```csharp
+"Hello! @#$%".RemoveSpecialChars()       // "Hello"
+"Hello! @#$%".RemoveSpecialChars("_")    // "Hello_______"
+```
+
+> **Note:** Anything outside the ASCII `a-zA-Z0-9` range is treated as "special" — including spaces and accented letters.
+
+---
+
+### `NormalizeNewLines`
+
+Normalizes line ending sequences by removing carriage return (`\r`) characters, collapsing `\r\n` and lone `\r` down to `\n`.
+
+```csharp
+public static string NormalizeNewLines(this string value)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The string whose line endings should be normalized. |
+
+**Returns** `string` — the string with normalized (`\n`-only) line endings.
+
+**Examples**
+
+```csharp
+"line1\r\nline2\nline3".NormalizeNewLines()  // "line1\nline2\nline3"
+```
+
+---
+
+### `StripHtml`
+
+Removes HTML tags from the string, leaving only the plain text content.
+
+```csharp
+public static string StripHtml(this string value)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The string containing HTML markup to strip. |
+
+**Returns** `string` — the plain text with HTML tags removed.
+
+**Examples**
+
+```csharp
+"<p>Hello <b>World</b></p>".StripHtml()  // "Hello World"
+```
+
+---
+
+### `CollapseWhitespace`
+
+Collapses all whitespace characters (spaces, tabs, newlines, etc.) in the string into single spaces, trimming the result.
+
+```csharp
+public static string CollapseWhitespace(this string value)
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | The string whose whitespace should be collapsed. |
+
+**Returns** `string` — the string with all whitespace runs collapsed to single spaces.
+
+**Examples**
+
+```csharp
+"Hello   World\t\tTest".CollapseWhitespace()  // "Hello World Test"
 ```
