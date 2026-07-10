@@ -54,7 +54,7 @@ public static class StrNormalize
     /// <param name="value">The string whose line endings should be normalized.</param>
     /// <returns>The string with normalized line endings.</returns>
     public static string NormalizeNewLines(this string value)
-        => value.Replace("\r", "");
+        => value.Replace("\r\n", "\n").Replace("\n\r", "\n").Replace("\r", "\n");
 
     /// <summary>
     /// Removes HTML tags from the string, leaving only the plain text content.
@@ -62,7 +62,7 @@ public static class StrNormalize
     /// <param name="value">The string containing HTML markup to strip.</param>
     /// <returns>The plain text with HTML tags removed.</returns>
     public static string StripHtml(this string value)
-        => Regex.Replace(value, @"(\<.*?\>)", "");
+        => Regex.Replace(value, @"(\<\S.*?\S\>)", "");
 
     /// <summary>
     /// Collapses all whitespace characters (spaces, tabs, newlines, etc.) in the string

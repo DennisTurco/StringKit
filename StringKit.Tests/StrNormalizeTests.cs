@@ -58,11 +58,27 @@ public class StrNormalizeTests
     }
 
     [Fact]
+    public void NormalizeNewLines_Should_Convert_Lone_Cr_To_Lf()
+    {
+        var input = "line1\rline2";
+        var result = input.NormalizeNewLines();
+        Assert.Equal("line1\nline2", result);
+    }
+
+    [Fact]
     public void StripHtml_Should_Remove_Html_Tags()
     {
         var input = "<p>Hello <b>World</b></p>";
         var result = input.StripHtml();
         Assert.Equal("Hello World", result);
+    }
+
+    [Fact]
+    public void StripHtml_Should_Preserve_Plain_Text_Containing_Angle_Brackets()
+    {
+        var input = "1 < 2 and 3 > 4";
+        var result = input.StripHtml();
+        Assert.Equal("1 < 2 and 3 > 4", result);
     }
 
     [Fact]

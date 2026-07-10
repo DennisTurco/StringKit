@@ -25,7 +25,7 @@ using StringKit;
 ```
 
 > All StringKit methods are extension methods on `System.String`.
-> Once the namespace is imported, they appear on every `string` instance — no class instantiation is needed.
+> Once the namespace is imported, they appear on every `string` instance: no class instantiation is needed.
 
 ## 3. Quick Examples
 

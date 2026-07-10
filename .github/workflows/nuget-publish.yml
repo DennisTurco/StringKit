@@ -38,7 +38,7 @@ jobs:
       - name: Check NuGet API key
         run: |
           if [ -z "$NUGET_API_KEY" ]; then
-            echo "::error::NUGET_API_KEY secret is not set. Go to Settings → Secrets and variables → Actions and add it."
+            echo "::error::NUGET_API_KEY secret is not set. Go to Settings $\rightarrow$ Secrets and variables $\rightarrow$ Actions and add it."
             exit 1
           fi
         env:

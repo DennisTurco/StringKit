@@ -33,7 +33,7 @@ public static string ToSlug(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string to convert. |
 
-**Returns** `string` — the slug-formatted string.
+**Returns** `string`: the slug-formatted string.
 
 **Examples**
 
@@ -60,7 +60,7 @@ public static string ToSnakeCase(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string to convert. |
 
-**Returns** `string` — the snake_case-formatted string.
+**Returns** `string`: the snake_case-formatted string.
 
 **Examples**
 
@@ -85,7 +85,7 @@ public static string ToCamelCase(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string to convert. |
 
-**Returns** `string` — the camelCase-formatted string.
+**Returns** `string`: the camelCase-formatted string.
 
 **Examples**
 
@@ -110,7 +110,7 @@ public static string ToPascalCase(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string to convert. |
 
-**Returns** `string` — the PascalCase-formatted string.
+**Returns** `string`: the PascalCase-formatted string.
 
 **Examples**
 
@@ -135,7 +135,7 @@ public static string ToTitleCase(this string value, CultureInfo culture)
 | `value` | `string` | The string to convert. |
 | `culture` | `CultureInfo` | The culture whose capitalisation rules are applied. |
 
-**Returns** `string` — the Title Case-formatted string.
+**Returns** `string`: the Title Case-formatted string.
 
 **Examples**
 
@@ -162,7 +162,7 @@ public static string ToSentenceCase(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string to convert. |
 
-**Returns** `string` — the Sentence case-formatted string.
+**Returns** `string`: the Sentence case-formatted string.
 
 **Examples**
 
@@ -173,7 +173,7 @@ public static string ToSentenceCase(this string value)
 "HELLO WORLD GOODBYE".ToSentenceCase()      // "hello world goodbye"
 ```
 
-> **Note:** The very first word is **not** capitalised by this method — only words that follow a period are capitalised. Capitalise the first character separately if needed.
+> **Note:** The very first word is **not** capitalised by this method: only words that follow a period are capitalised. Capitalise the first character separately if needed.
 
 ---
 
@@ -193,11 +193,11 @@ public static string Truncate(this string value, int length, string suffix = "..
 | `length` | `int` | Number of characters to **remove** from the end (must be > 0 and ≤ `value.Length`). |
 | `suffix` | `string` | Appended after the cut. Defaults to `"..."`. |
 
-**Returns** `string` — the truncated string with the suffix appended.
+**Returns** `string`: the truncated string with the suffix appended.
 
 **Throws**
-- `ArgumentOutOfRangeException` — if `length` ≤ 0.
-- `ArgumentOutOfRangeException` — if `length` > `value.Length`.
+- `ArgumentOutOfRangeException`: if `length` ≤ 0.
+- `ArgumentOutOfRangeException`: if `length` > `value.Length`.
 
 **Examples**
 
@@ -223,16 +223,16 @@ public static string TruncateWords(this string value, int n)
 | `value` | `string` | The string to truncate. |
 | `n` | `int` | Number of words to keep. |
 
-**Returns** `string` — a string containing the first `n` words. Returns an empty string when `n` equals the total word count.
+**Returns** `string`: a string containing the first `n` words. Returns an empty string when `n` equals the total word count.
 
 **Throws**
-- `ArgumentOutOfRangeException` — if `n` exceeds the number of words in the string, or if the string is empty and `n` > 0.
+- `ArgumentOutOfRangeException`: if `n` exceeds the number of words in the string, or if the string is empty and `n` > 0.
 
 **Examples**
 
 ```csharp
 "hello beautiful world".TruncateWords(2) // "hello beautiful"
-"hello world".TruncateWords(2)           // ""  (n == word count → empty string)
+"hello world".TruncateWords(2)           // ""  (n == word count $\rightarrow$ empty string)
 ```
 
 ---
@@ -252,7 +252,7 @@ public static string Repeat(this string value, int n)
 | `value` | `string` | The string to repeat. |
 | `n` | `int` | Number of repetitions. |
 
-**Returns** `string` — the string repeated `n` times. Returns an empty string if `n` is 0 or if `value` is empty.
+**Returns** `string`: the string repeated `n` times. Returns an empty string if `n` is 0 or if `value` is empty.
 
 **Examples**
 
@@ -277,7 +277,7 @@ public static string Reverse(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string to reverse. |
 
-**Returns** `string` — the reversed string. Returns an empty string if `value` is empty.
+**Returns** `string`: the reversed string. Returns an empty string if `value` is empty.
 
 **Examples**
 
@@ -306,10 +306,10 @@ public static string Redact(this string value, int start, int end)
 | `start` | `int` | Index of the first character to redact (inclusive). |
 | `end` | `int` | Index of the last character to redact (exclusive). |
 
-**Returns** `string` — the string with the specified range replaced by `*`.
+**Returns** `string`: the string with the specified range replaced by `*`.
 
 **Throws**
-- `ArgumentOutOfRangeException` — if `end` ≥ `value.Length`, or if `start` > `end`.
+- `ArgumentOutOfRangeException`: if `end` ≥ `value.Length`, or if `start` > `end`.
 
 **Examples**
 
@@ -331,7 +331,7 @@ public static string MaskEmail(this string email)
 |-----------|------|-------------|
 | `email` | `string` | The email address to mask. |
 
-**Returns** `string` — the masked email address.
+**Returns** `string`: the masked email address.
 
 **Examples**
 
@@ -353,7 +353,7 @@ public static string MaskPhone(this string phone)
 |-----------|------|-------------|
 | `phone` | `string` | The phone number to mask. |
 
-**Returns** `string` — the masked phone number.
+**Returns** `string`: the masked phone number.
 
 **Examples**
 
@@ -562,7 +562,7 @@ Returns `true` if the string length is ≥ the specified minimum.
 public static bool HasMinLength(this string value, int length)
 ```
 
-**Throws** `ArgumentOutOfRangeException` — if `length` ≤ 0.
+**Throws** `ArgumentOutOfRangeException`: if `length` ≤ 0.
 
 **Examples**
 
@@ -581,7 +581,7 @@ Returns `true` if the string length is ≤ the specified maximum.
 public static bool HasMaxLength(this string value, int length)
 ```
 
-**Throws** `ArgumentOutOfRangeException` — if `length` ≤ 0.
+**Throws** `ArgumentOutOfRangeException`: if `length` ≤ 0.
 
 **Examples**
 
@@ -672,7 +672,7 @@ public static string HtmlEncode(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string to HTML-encode. |
 
-**Returns** `string` — the HTML-encoded string.
+**Returns** `string`: the HTML-encoded string.
 
 **Examples**
 
@@ -694,7 +694,7 @@ public static string HtmlDecode(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The HTML-encoded string to decode. |
 
-**Returns** `string` — the decoded string.
+**Returns** `string`: the decoded string.
 
 **Examples**
 
@@ -718,7 +718,7 @@ public static string NormalizeSpaces(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string to normalize. |
 
-**Returns** `string` — the trimmed string with internal whitespace runs collapsed to single spaces.
+**Returns** `string`: the trimmed string with internal whitespace runs collapsed to single spaces.
 
 **Examples**
 
@@ -741,7 +741,7 @@ public static string RemoveDiacritics(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string to strip diacritics from. |
 
-**Returns** `string` — the string with non-spacing combining marks removed, re-normalized to composed form.
+**Returns** `string`: the string with non-spacing combining marks removed, re-normalized to composed form.
 
 **Examples**
 
@@ -764,7 +764,7 @@ public static string JoinLines(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The multi-line string to join. |
 
-**Returns** `string` — the string with all newline characters removed.
+**Returns** `string`: the string with all newline characters removed.
 
 **Examples**
 
@@ -787,7 +787,7 @@ public static string RemoveSpecialChars(this string value, string replace = "")
 | `value` | `string` | The string to clean. |
 | `replace` | `string` | The string to substitute for each special character removed. Defaults to an empty string. |
 
-**Returns** `string` — the string with special characters removed or replaced.
+**Returns** `string`: the string with special characters removed or replaced.
 
 **Examples**
 
@@ -796,7 +796,7 @@ public static string RemoveSpecialChars(this string value, string replace = "")
 "Hello! @#$%".RemoveSpecialChars("_")    // "Hello_______"
 ```
 
-> **Note:** Anything outside the ASCII `a-zA-Z0-9` range is treated as "special" — including spaces and accented letters.
+> **Note:** Anything outside the ASCII `a-zA-Z0-9` range is treated as "special": including spaces and accented letters.
 
 ---
 
@@ -812,7 +812,7 @@ public static string NormalizeNewLines(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string whose line endings should be normalized. |
 
-**Returns** `string` — the string with normalized (`\n`-only) line endings.
+**Returns** `string`: the string with normalized (`\n`-only) line endings.
 
 **Examples**
 
@@ -834,7 +834,7 @@ public static string StripHtml(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string containing HTML markup to strip. |
 
-**Returns** `string` — the plain text with HTML tags removed.
+**Returns** `string`: the plain text with HTML tags removed.
 
 **Examples**
 
@@ -856,7 +856,7 @@ public static string CollapseWhitespace(this string value)
 |-----------|------|-------------|
 | `value` | `string` | The string whose whitespace should be collapsed. |
 
-**Returns** `string` — the string with all whitespace runs collapsed to single spaces.
+**Returns** `string`: the string with all whitespace runs collapsed to single spaces.
 
 **Examples**
 

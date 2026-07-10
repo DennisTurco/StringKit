@@ -2,7 +2,6 @@ namespace StringKit.Tests;
 
 public class StrResearchTests
 {
-    // ContainsAny
     [Fact]
     public void ContainsAny_OneMatch_ReturnsTrue()
         => Assert.True("Hello World".ContainsAny("World", "Foo"));
@@ -28,7 +27,6 @@ public class StrResearchTests
     public void ContainsAll_NoMatch_ReturnsFalse()
         => Assert.False("Hello World".ContainsAll("Foo", "Bar"));
 
-    // StartsWithAny
     [Fact]
     public void StartsWithAny_OneMatch_ReturnsTrue()
         => Assert.True("Hello World".StartsWithAny("Hello", "Foo"));
@@ -41,7 +39,6 @@ public class StrResearchTests
     public void StartsWithAny_NoMatch_CaseSensitive()
         => Assert.False("Hello World".StartsWithAny("hello", "foo"));
 
-    // EndsWithAny
     [Fact]
     public void EndsWithAny_OneMatch_ReturnsTrue()
         => Assert.True("Hello World".EndsWithAny("World", "Foo"));
@@ -54,7 +51,6 @@ public class StrResearchTests
     public void EndsWithAny_NoMatch_CaseSensitive()
         => Assert.False("Hello World".EndsWithAny("world", "foo"));
 
-    // EqualsIgnoreCase
     [Fact]
     public void EqualsIgnoreCase_SameCase_ReturnsTrue()
         => Assert.True("Hello".EqualsIgnoreCase("Hello"));
@@ -66,4 +62,22 @@ public class StrResearchTests
     [Fact]
     public void EqualsIgnoreCase_DifferentString_ReturnsFalse()
         => Assert.False("Hello".EqualsIgnoreCase("World"));
+
+    [Fact]
+    public void EqualsIgnoreCase_TurkishCulture_IsCultureIndependent()
+    {
+        // "Case-insensitive" must not depend on CurrentCulture. Under tr-TR, "I".ToLower()
+        // produces the dotless "ı", not "i": so an implementation using culture-sensitive
+        // ToLower() (instead of an ordinal/invariant comparison) breaks for plain ASCII "I".
+        var original = System.Threading.Thread.CurrentThread.CurrentCulture;
+        try
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("tr-TR");
+            Assert.True("I".EqualsIgnoreCase("i"));
+        }
+        finally
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = original;
+        }
+    }
 }

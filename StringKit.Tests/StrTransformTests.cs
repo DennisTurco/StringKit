@@ -4,27 +4,54 @@ namespace StringKit.Tests;
 
 public class StrTransformTests
 {
-    // ═══════════════════════════════════════════════════════════════════════════
-    // ToSlug
-    // ═══════════════════════════════════════════════════════════════════════════
-
     [Theory]
     [InlineData("hello world", "hello-world")]
     [InlineData("Hello World", "hello-world")]
     [InlineData("HELLO WORLD", "hello-world")]
     [InlineData("hello", "hello")]
-    [InlineData("Hello", "hello")]
     [InlineData("hello-world", "hello-world")]
-    [InlineData("hello  world", "hello--world")]
     [InlineData("", "")]
     [InlineData("a b c d e", "a-b-c-d-e")]
-    [InlineData("Hello Beautiful World", "hello-beautiful-world")]
+    [InlineData("hello  world", "hello-world")]
+    [InlineData("  Hello World  ", "hello-world")]
+    [InlineData("Hello, World!", "hello-world")]
+    [InlineData("Café Menu", "cafe-menu")]
     public void ToSlug_ReturnsExpected(string input, string expected)
         => Assert.Equal(expected, input.ToSlug());
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // ToSnakeCase
-    // ═══════════════════════════════════════════════════════════════════════════
+    [Fact]
+    public void ToSlug_NoUppercaseInResult()
+    {
+        var result = "Hello Beautiful WORLD".ToSlug();
+        Assert.Equal(result, result.ToLower());
+    }
+
+    [Fact]
+    public void ToSlug_NoSpacesInResult()
+    {
+        var result = "hello beautiful world".ToSlug();
+        Assert.DoesNotContain(" ", result);
+    }
+
+    [Theory]
+    [InlineData("hello world", "hello-world")]
+    [InlineData("Hello World", "hello-world")]
+    [InlineData("hello", "hello")]
+    [InlineData("hello-world", "hello-world")]
+    [InlineData("", "")]
+    [InlineData("hello  world", "hello-world")]
+    [InlineData("helloWorld", "hello-world")]
+    [InlineData("HelloWorld", "hello-world")]
+    [InlineData("hello_world", "hello-world")]
+    public void ToKebabCase_ReturnsExpected(string input, string expected)
+        => Assert.Equal(expected, input.ToKebabCase());
+
+    [Fact]
+    public void ToKebabCase_NoUppercaseInResult()
+    {
+        var result = "Hello Beautiful WORLD".ToKebabCase();
+        Assert.Equal(result, result.ToLower());
+    }
 
     [Theory]
     [InlineData("hello world", "hello_world")]
@@ -39,10 +66,6 @@ public class StrTransformTests
     [InlineData("Hello Beautiful World", "hello_beautiful_world")]
     public void ToSnakeCase_ReturnsExpected(string input, string expected)
         => Assert.Equal(expected, input.ToSnakeCase());
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // ToCamelCase
-    // ═══════════════════════════════════════════════════════════════════════════
 
     [Theory]
     [InlineData("hello world", "helloWorld")]
@@ -69,10 +92,6 @@ public class StrTransformTests
         var result = "hello beautiful world".ToCamelCase();
         Assert.DoesNotContain(" ", result);
     }
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // ToPascalCase
-    // ═══════════════════════════════════════════════════════════════════════════
 
     [Theory]
     [InlineData("hello world", "HelloWorld")]
@@ -109,10 +128,6 @@ public class StrTransformTests
         Assert.True(char.IsUpper(result[14]));  // World
     }
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // ToSentenceCase
-    // ═══════════════════════════════════════════════════════════════════════════
-
     [Theory]
     [InlineData("hello world. hello again.", "hello world. Hello again.")]
     [InlineData("one. two. three.", "one. Two. Three.")]
@@ -130,10 +145,6 @@ public class StrTransformTests
         Assert.Equal("hello world goodbye", result);
     }
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // Truncate
-    // ═══════════════════════════════════════════════════════════════════════════
-
     [Theory]
     [InlineData("Hello World", 4, "Hello W...")]
     [InlineData("Hello World", 1, "Hello Worl...")]
@@ -150,10 +161,6 @@ public class StrTransformTests
     public void Truncate_LengthExceedsStringLength_ThrowsStrTransformException(string input, int length)
         => Assert.Throws<ArgumentOutOfRangeException>(() => input.Truncate(length));
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // TruncateWords
-    // ═══════════════════════════════════════════════════════════════════════════
-
     [Theory]
     [InlineData("hello world", 5)]
     [InlineData("one", 2)]
@@ -161,23 +168,16 @@ public class StrTransformTests
     public void TruncateWords_NExceedsWordCount_ThrowsStrTransformException(string input, int n)
         => Assert.Throws<ArgumentOutOfRangeException>(() => input.TruncateWords(n));
 
-    [Fact]
-    public void TruncateWords_ValidN_ReturnsNonNullResult()
-    {
-        var result = "hello beautiful world".TruncateWords(2);
-        Assert.NotNull(result);
-    }
+    [Theory]
+    [InlineData("hello beautiful world", 2, "hello beautiful")]
+    [InlineData("hello world foo", 2, "hello world")]
+    [InlineData("one two three four", 3, "one two three")]
+    public void TruncateWords_ValidN_ReturnsFirstNWords(string input, int n, string expected)
+        => Assert.Equal(expected, input.TruncateWords(n));
 
     [Fact]
-    public void TruncateWords_NEqualsWordCount_DoesNotThrow()
-    {
-        var ex = Record.Exception(() => "hello world".TruncateWords(2));
-        Assert.Null(ex);
-    }
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // Repeat
-    // ═══════════════════════════════════════════════════════════════════════════
+    public void TruncateWords_NEqualsWordCount_ReturnsEmptyString()
+        => Assert.Equal(string.Empty, "hello world".TruncateWords(2));
 
     [Theory]
     [InlineData("ab", 1u, "ab")]
@@ -194,11 +194,8 @@ public class StrTransformTests
         => Assert.Equal("hello", "hello".Repeat(1));
 
     [Fact]
-    public void Repeat_Zero_ReturnsOriginalDueToLoopBehavior()
-    {
-        var ex = Record.Exception(() => "ab".Repeat(0));
-        Assert.Null(ex);
-    }
+    public void Repeat_Zero_ReturnsEmptyString()
+        => Assert.Equal(string.Empty, "ab".Repeat(0));
 
     [Fact]
     public void Repeat_ResultLengthIsMultipleOfOriginal()
@@ -208,10 +205,6 @@ public class StrTransformTests
         var result = input.Repeat(n);
         Assert.Equal(input.Length * n, result.Length);
     }
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // Reverse
-    // ═══════════════════════════════════════════════════════════════════════════
 
     [Theory]
     [InlineData("hello world", "dlrow olleh")]
@@ -242,10 +235,6 @@ public class StrTransformTests
         Assert.Equal(input.Length, result.Length);
     }
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // english (CultureInfo.InvariantCulture)
-    // ═══════════════════════════════════════════════════════════════════════════
-
     [Theory]
     [InlineData("hello world", "Hello World")]
     [InlineData("Hello World", "Hello World")]
@@ -259,20 +248,12 @@ public class StrTransformTests
     public void ToTitleCase_InvariantCulture_ReturnsExpected(string input, string expected)
         => Assert.Equal(expected, input.ToTitleCase(CultureInfo.InvariantCulture));
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // italian culture
-    // ═══════════════════════════════════════════════════════════════════════════
-
     [Theory]
     [InlineData("ciao mondo", "Ciao Mondo")]
     [InlineData("buongiorno", "Buongiorno")]
     [InlineData("CIAO MONDO", "Ciao Mondo")]
     public void ToTitleCase_ItalianCulture_ReturnsExpected(string input, string expected)
         => Assert.Equal(expected, input.ToTitleCase(new CultureInfo("it-IT")));
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // turkish culture: "i" -> "İ"
-    // ═══════════════════════════════════════════════════════════════════════════
 
     [Fact]
     public void ToTitleCase_TurkishCulture_CapitalizesIWithDot()
@@ -287,10 +268,6 @@ public class StrTransformTests
         var result = "istanbul".ToTitleCase(new CultureInfo("en-US"));
         Assert.Equal("Istanbul", result);
     }
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // Culture-independent invariant properties
-    // ═══════════════════════════════════════════════════════════════════════════
 
     [Theory]
     [InlineData("hello world")]
@@ -329,10 +306,6 @@ public class StrTransformTests
         Assert.Equal(input.Split(' ').Length, result.Split(' ').Length);
     }
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // Words with accented characters (relevant for it-IT, fr-FR, etc.)
-    // ═══════════════════════════════════════════════════════════════════════════
-
     [Theory]
     [InlineData("it-IT", "è un bel giorno", "È Un Bel Giorno")]
     [InlineData("fr-FR", "à paris en été", "À Paris En Été")]
@@ -340,10 +313,6 @@ public class StrTransformTests
         string culture, string input, string expected)
         => Assert.Equal(expected,
                input.ToTitleCase(new CultureInfo(culture)));
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // Current thread culture (CurrentCulture)
-    // ═══════════════════════════════════════════════════════════════════════════
 
     [Fact]
     public void ToTitleCase_CurrentCulture_DoesNotThrow()

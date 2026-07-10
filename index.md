@@ -16,7 +16,7 @@ landingData:
         url: coverage-report.md
       - name: Open Source
         icon: fa-code-branch
-        description: MIT-licensed. Contributions welcome — check the contributing guide to get started.
+        description: MIT-licensed. Contributions welcome: check the contributing guide to get started.
         url: docs/contributing.md
 ---
 
@@ -44,11 +44,11 @@ using StringKit;
 
 ## 2. Features
 
-- **Case conversion & truncation** — `ToSlug`, `ToCamelCase`, `ToPascalCase`, `ToSnakeCase`, `ToTitleCase`, `ToSentenceCase`, `Truncate`, `Repeat`, `Reverse`
-- **Normalization** — `NormalizeSpaces`, `RemoveDiacritics`, `RemoveSpecialChars`, `NormalizeNewLines`, `StripHtml`, `CollapseWhitespace`, `JoinLines`
-- **Privacy / PII masking** — `Redact`, `MaskEmail`, `MaskPhone`
-- **Search & comparison** — `ContainsAny`, `ContainsAll`, `StartsWithAny`, `EndsWithAny`, `EqualsIgnoreCase`
-- **Validation** — `IsEmail`, `IsUrl`, `IsNumeric`, `IsAlpha`, `IsAlphanumeric`, `IsNullOrWhiteSpace`, `HasMinLength`, `HasMaxLength`
-- **Encoding / decoding** — `ToBase64`, `FromBase64`, `UrlEncode`, `UrlDecode`, `HtmlEncode`, `HtmlDecode`
+- **Case conversion & truncation**: `ToSlug`, `ToCamelCase`, `ToPascalCase`, `ToSnakeCase`, `ToTitleCase`, `ToSentenceCase`, `Truncate`, `Repeat`, `Reverse`
+- **Normalization**: `NormalizeSpaces`, `RemoveDiacritics`, `RemoveSpecialChars`, `NormalizeNewLines`, `StripHtml`, `CollapseWhitespace`, `JoinLines`
+- **Privacy / PII masking**: `Redact`, `MaskEmail`, `MaskPhone`
+- **Search & comparison**: `ContainsAny`, `ContainsAll`, `StartsWithAny`, `EndsWithAny`, `EqualsIgnoreCase`
+- **Validation**: `IsEmail`, `IsUrl`, `IsNumeric`, `IsAlpha`, `IsAlphanumeric`, `IsNullOrWhiteSpace`, `HasMinLength`, `HasMaxLength`
+- **Encoding / decoding**: `ToBase64`, `FromBase64`, `UrlEncode`, `UrlDecode`, `HtmlEncode`, `HtmlDecode`
 
-## 3. [📖 Read the documentation →](docs/introduction.md)
+## 3. [📖 Read the documentation $\rightarrow$](docs/introduction.md)

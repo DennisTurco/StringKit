@@ -22,10 +22,10 @@ dotnet add package StringKit
 
 ## Features
 
-- **Case conversion** — `ToSlug`, `ToSnakeCase`, `ToCamelCase`, `ToPascalCase`, `ToTitleCase`, `ToSentenceCase`
-- **Truncation** — `Truncate` (by characters) and `TruncateWords` (by word count)
-- **Utilities** — `Repeat`, `Reverse`
-- Zero external dependencies — pure .NET BCL
+- **Case conversion**: `ToSlug`, `ToSnakeCase`, `ToCamelCase`, `ToPascalCase`, `ToTitleCase`, `ToSentenceCase`
+- **Truncation**: `Truncate` (by characters) and `TruncateWords` (by word count)
+- **Utilities**: `Repeat`, `Reverse`
+- Zero external dependencies: pure .NET BCL
 - All methods are static and thread-safe
 
 ## Usage

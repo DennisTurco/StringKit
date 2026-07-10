@@ -26,7 +26,7 @@ public static class StrTransform
     /// </code>
     /// </example>
     public static string ToSlug(this string value)
-        => value.ToLower().Replace(" ", "-");
+        => value.ToLower().RemoveDiacritics().RemoveSpecialChars(" ").NormalizeSpaces().Replace(" ", "-");
 
     /// <summary>
     /// Converts a string to snake_case, replacing spaces with underscores and lowercasing the result.
@@ -40,6 +40,24 @@ public static class StrTransform
     /// </example>
     public static string ToSnakeCase(this string value)
         => value.ToLower().Replace(" ", "_");
+
+    /// <summary>
+    /// Converts a string to kebab-case, replacing spaces with hyphens and lowercasing the result.
+    /// </summary>
+    /// <param name="value">The string to convert.</param>
+    /// <returns>The kebab-case-formatted string.</returns>
+    /// <example>
+    /// <code>
+    /// "Hello World".ToKebabCase() // "hello-world"
+    /// </code>
+    /// </example>
+    public static string ToKebabCase(this string value)
+        => Regex.Replace(value, @"(?<=[a-zà-ž0-9])(?=[A-ZÀ-Ž])", " ")
+            .ToLower()
+            .NormalizeSpaces()
+            .Replace("_", "-")
+            .Replace(" ", "-");
+
 
     /// <summary>
     /// Converts a string to camelCase, capitalizing the first letter of each word except the first.
