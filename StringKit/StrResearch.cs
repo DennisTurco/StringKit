@@ -82,5 +82,5 @@ public static class StrResearch
     /// </code>
     /// </example>
     public static bool EqualsIgnoreCase(this string value, string other)
-        => value.ToLower().Equals(other.ToLower());
+        => value.Equals(other, StringComparison.OrdinalIgnoreCase);
 }

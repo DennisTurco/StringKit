@@ -146,27 +146,37 @@ public static class StrTransform
 
     /// <summary>
     /// Truncates a string to the specified number of words.
+    /// If <paramref name="n"/> equals the total number of words, returns an empty string.
     /// </summary>
     /// <param name="value">The string to truncate.</param>
-    /// <param name="n">The number of words to keep.</param>
-    /// <returns>A string containing at most <paramref name="n"/> words.</returns>
+    /// <param name="n">The number of words to keep. Must be less than or equal to the number of words in the string.</param>
+    /// <returns>
+    /// A string containing the first <paramref name="n"/> words,
+    /// or <see cref="string.Empty"/> if <paramref name="n"/> equals the total word count.
+    /// </returns>
     /// <exception cref="ArgumentOutOfRangeException">
     /// Thrown if <paramref name="n"/> exceeds the number of words in the string,
-    /// or if the string is empty and <paramref name="n"/> is greater than zero.
+    /// or if <paramref name="value"/> is empty and <paramref name="n"/> is greater than zero.
     /// </exception>
     /// <example>
     /// <code>
     /// "hello world foo".TruncateWords(2) // "hello world"
+    /// "hello world".TruncateWords(2)     // ""
     /// </code>
     /// </example>
     public static string TruncateWords(this string value, int n)
     {
+        if (string.IsNullOrEmpty(value) && n > 0)
+            throw new ArgumentOutOfRangeException($"Cannot truncate {n} words from an empty string");
+
         var words = value.Split();
 
-        if (words.Length < n || (string.IsNullOrEmpty(value) && n > 0)) throw new ArgumentOutOfRangeException($"Cannot truncate {n} words because it's exceeded the number of words of the string");
-        if (words.Length == n) return string.Empty;
+        if (words.Length < n)
+            throw new ArgumentOutOfRangeException($"Cannot truncate {n} words because it's exceeded the number of words of the string");
+        if (words.Length == n)
+            return string.Empty;
 
-        return string.Join(words[0..n].ToString(), " ");
+        return string.Join(" ", words[0..n]);
     }
 
     /// <summary>

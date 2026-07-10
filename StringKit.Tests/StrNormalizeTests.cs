@@ -88,4 +88,13 @@ public class StrNormalizeTests
         var result = input.CollapseWhitespace();
         Assert.Equal("Hello World Test", result);
     }
+
+    [Theory]
+    [InlineData("hello\nworld", "helloworld")]
+    [InlineData("hello\nworld\nfoo", "helloworldfoo")]
+    [InlineData("hello", "hello")]
+    [InlineData("", "")]
+    [InlineData("hello\r\nworld", "helloworld")]
+    public void JoinLines_ValidInput_ReturnsJoined(string input, string expected)
+        => Assert.Equal(expected, input.JoinLines());
 }

@@ -62,7 +62,7 @@ public static class StrNormalize
     /// <param name="value">The string containing HTML markup to strip.</param>
     /// <returns>The plain text with HTML tags removed.</returns>
     public static string StripHtml(this string value)
-        => Regex.Replace(value, @"(\<\S.*?\S\>)", "");
+        => Regex.Replace(value, @"(<[a-zA-Z/][^>]*>)", "");
 
     /// <summary>
     /// Collapses all whitespace characters (spaces, tabs, newlines, etc.) in the string
@@ -79,5 +79,5 @@ public static class StrNormalize
     /// <param name="value">The multi-line string to join.</param>
     /// <returns>The string with all newline characters removed.</returns>
     public static string JoinLines(this string value)
-        => value.Replace("\n", "");
+        => value.NormalizeNewLines().Replace("\n", "");
 }

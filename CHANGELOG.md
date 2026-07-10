@@ -5,7 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [1.0.0] - 2026-07-10
 
 ### Added
 
@@ -38,6 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `FromBase64(string)`: decodes a Base64-encoded string back to its original UTF-8 plain-text
 - `UrlEncode(string)`: encodes a string for safe inclusion in a URL (percent-encodes special characters)
 - `UrlDecode(string)`: decodes a URL-encoded string back to its original characters
+- `HtmlEncode(string)`: encodes a string for safe inclusion in HTML, replacing characters such as `<`, `>`, and `&` with their HTML entity equivalents
+- `HtmlDecode(string)`: decodes an HTML-encoded string, converting HTML entities back to their original characters
 
 #### `StrResearch`: new class
 
@@ -81,5 +85,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - No HTTP calls, no external services: all transformations run locally in-process
 - Targets **.NET 9.0**
 
-[Unreleased]: https://github.com/DennisTurco/StringKit/compare/v1.0.0...HEAD
+<!-- [Unreleased]: https://github.com/DennisTurco/StringKit/compare/v2.0.0...HEAD -->
 [1.0.0]: https://github.com/DennisTurco/StringKit/releases/tag/v1.0.0

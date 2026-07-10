@@ -6,10 +6,10 @@
 
      <!-- NuGet metadata -->
      <PackageId>StringKit</PackageId>
-     <Version>2.0.0</Version>
+     <Version>1.0.0</Version>
      <Authors>DennisTurco</Authors>
-     <Description>A .NET library for ...</Description>
-     <PackageTags>...</PackageTags>
+     <Description>A lightweight, zero-dependency .NET library of extension methods for common string operations: case conversion, truncation, normalization, privacy/PII masking, search, validation, and Base64/URL/HTML encoding.</Description>
+     <PackageTags>string;strings;extensions;utilities;stringutils;normalization;case-conversion;validation;encoding;privacy;masking</PackageTags>
      <PackageLicenseExpression>MIT</PackageLicenseExpression>
      <PackageProjectUrl>https://github.com/DennisTurco/StringKit</PackageProjectUrl>
      <RepositoryUrl>https://github.com/DennisTurco/StringKit</RepositoryUrl>
