@@ -9,6 +9,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
+      id-token: write   # required for NuGet Trusted Publishing (OIDC token exchange)
       packages: write
       contents: read
     env:
@@ -35,19 +36,8 @@ jobs:
       - name: Pack
         run: dotnet pack StringKit/StringKit.csproj --no-build -c Release -o ./nupkg
 
-      - name: Check NuGet API key
-        run: |
-          if [ -z "$NUGET_API_KEY" ]; then
-            echo "::error::NUGET_API_KEY secret is not set. Go to Settings $\rightarrow$ Secrets and variables $\rightarrow$ Actions and add it."
-            exit 1
-          fi
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-
-      - name: Push to NuGet.org
-        run: dotnet nuget push ./nupkg/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      - name: Push to NuGet.org (Trusted Publishing)
+        run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: Push to GitHub Packages
         run: |
