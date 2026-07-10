@@ -8,7 +8,6 @@
 
 A lightweight .NET library of extension methods for common string transformations and formatting.
 
-![Build](https://github.com/DennisTurco/StringKit/actions/workflows/build.yml/badge.svg)
 ![Coverage](https://codecov.io/gh/DennisTurco/StringKit/graph/badge.svg)
 ![Downloads](https://img.shields.io/nuget/dt/StringKit)
 [![NuGet](https://img.shields.io/nuget/v/StringKit.svg)](https://www.nuget.org/packages/StringKit)
