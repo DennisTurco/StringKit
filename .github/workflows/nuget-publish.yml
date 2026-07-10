@@ -9,7 +9,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write   # required for NuGet Trusted Publishing (OIDC token exchange)
+      id-token: write   # required for NuGet Trusted Publishing (GitHub OIDC token issuance)
       packages: write
       contents: read
     env:
@@ -36,8 +36,14 @@ jobs:
       - name: Pack
         run: dotnet pack StringKit/StringKit.csproj --no-build -c Release -o ./nupkg
 
-      - name: Push to NuGet.org (Trusted Publishing)
-        run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate
+      - name: NuGet login (OIDC -> temp API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: DennisTurco
+
+      - name: Push to NuGet.org
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: Push to GitHub Packages
         run: |
